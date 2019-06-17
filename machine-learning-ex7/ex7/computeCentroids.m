@@ -26,9 +26,20 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+for i = 1:K
+    list = find(idx==i);
+    sum = zeros(0, n);
+    for index = list
+        sum = [sum ; X(index, :)];
+    end
+    means = mean(sum, 1);
+    centroids(i, :) = means;
+end
 
-
-
+% Much cleaner method:
+% for i=1 :K
+%   centroids(i, :) = mean(X([find(idx == i)], :));
+% end
 
 
 
